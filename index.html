@@ -30,18 +30,22 @@
 			<p>About chart:</p>
 			<p>1. Use the dataset "Texas road network " from SNAP.</p>
 			<p>2. Since there are too many links for web browsing, extract the first 300 nodes appear in the dataset as sub network.</p>
+			<p>3. Each circle reprecent a node of road (both start and end). </p>
+			<p>4. Each link reprecent a road between two nodes. </p>
+			<p>5. Add roads no matter start or end as node weight, which affect circle size.</p>
+			<p>6. If node weight is over threshold (for this case, 8) , paint it orange ; it might be important place, eg: town or city.</p>
 		</div>
 		<script>
 			//console.log( $('#canvas') );
 
-			var width = 1440,
-			    height = 810;
+			var width = 1680,
+			    height = 945;
 
 			var color = d3.scale.category10();
 
 			var force = d3.layout.force()
-			    .charge(-60)
-			    .linkDistance(40)
+			    .charge(-80)
+			    .linkDistance(50)
 			    .size([width, height]);
 
 			var svg = d3.select("#canvas").append("svg")
@@ -72,7 +76,7 @@
 			      .data(graph.nodes)
 			    .enter().append("circle")
 			      .attr("class", "node")
-			      .attr("r", function(d){return 3+d.weight})
+			      .attr("r", function(d){return 3+1.5*d.weight})
 			      .attr("title", function (d) { return "node #"+d.node+" ; weight:"+d.weight + " ; in:"+d.in + " ; out:"+d.out; })
 			      .style("fill", function(d) { 
 			      	if(d.weight >6)
