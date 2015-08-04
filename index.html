@@ -73,7 +73,7 @@
 			    .enter().append("circle")
 			      .attr("class", "node")
 			      .attr("r", function(d){return 3+d.weight})
-			      .attr("title", function (d) { return "node #"+d.node+" ; weight:"+d.weight; })
+			      .attr("title", function (d) { return "node #"+d.node+" ; weight:"+d.weight + " ; in:"+d.in + " ; out:"+d.out; })
 			      .style("fill", function(d) { 
 			      	if(d.weight >6)
 			      		return color(1);

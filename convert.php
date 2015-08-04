@@ -48,7 +48,8 @@ while($sLine = fgets($readRs) ){
 
 		$aNodes[$iSource] = array(	"node"=>$iSource,
 						"name" => "node #$iCount",
-						"inlink" => 0
+						"in" => 0,
+						"out" => 0
 						);
 		$aNodesMap[] = $iSource;
 
@@ -63,7 +64,8 @@ while($sLine = fgets($readRs) ){
 
 		$aNodes[$iTarget] = array(	"node"=>$iTarget,
 						"name" => "node #$iCount",
-						"inlink" => 0
+						"in" => 0,
+						"out" => 0
 						);
 		$aNodesMap[] = $iTarget;
 
@@ -78,8 +80,9 @@ while($sLine = fgets($readRs) ){
 	$aLinks[] = $aSingleLink;
 	prt("add link node #$iSource to node #$iTarget");
 
-	//accumulate node in-link count
-	$aNodes[$iTarget]["inlink"] = $aNodes[$iTarget]["inlink"]+1;
+	//accumulate node count
+	$aNodes[$iSource]["out"] = $aNodes[$iSource]["out"]+1;
+	$aNodes[$iTarget]["in"] = $aNodes[$iTarget]["in"]+1;
 
 	if($iCount>300)
 		break;
