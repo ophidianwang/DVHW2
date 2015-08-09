@@ -29,11 +29,12 @@
 		<div id="about">
 			<p>About chart:</p>
 			<p>1. Use the dataset "Texas road network " from SNAP.</p>
-			<p>2. Since there are too many links for web browsing, extract the first 300 nodes appear in the dataset as sub network.</p>
-			<p>3. Each circle reprecent a node of road (both start and end). </p>
+			<p>2. Since there are too many links for web browsing, extract the first 300 nodes appear in the dataset as my subset.</p>
+			<p>3. Each circle reprecent a node of road (either start and end). </p>
 			<p>4. Each link reprecent a road between two nodes. </p>
-			<p>5. Use number of roads no matter start or end at the node as its weight, which affect circle size.</p>
-			<p>6. If node weight is over threshold (for this case, 8) , paint it orange ; it might be an important place, eg: town or city.</p>
+			<p>5. Use number of roads no matter start or end at the node as its degree, which affect circle size.</p>
+			<p>6. If node degree is over threshold (for this case, 8) , paint it orange ; it might be an important place, eg: town or city.</p>
+			<p>7. Hover on each node, then it would show its degree, in-degree and out-degree.</p>
 		</div>
 		<script>
 			//console.log( $('#canvas') );
@@ -76,10 +77,10 @@
 			      .data(graph.nodes)
 			    .enter().append("circle")
 			      .attr("class", "node")
-			      .attr("r", function(d){return 3+1.5*d.weight})
-			      .attr("title", function (d) { return "node #"+d.node+" ; weight:"+d.weight + " ; in:"+d.in + " ; out:"+d.out; })
+			      .attr("r", function(d){return 3+1.5*d.degree})
+			      .attr("title", function (d) { return "node #"+d.node+" ; degree:"+d.degree + " ; in:"+d.in + " ; out:"+d.out; })
 			      .style("fill", function(d) { 
-			      	if(d.weight >6)
+			      	if(d.degree >6)
 			      		return color(1);
 			      	else
 			      		return color(0); 
